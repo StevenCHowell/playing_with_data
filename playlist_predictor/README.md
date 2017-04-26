@@ -8,12 +8,11 @@ Instead, I would like to create playlists that analyze the features of the liked
 Plan
 1. Create csv (easy for laymen to create from a spreadsheet) of some of my playlists, song titles and artists (potentially allow for additional features)
 2. Query the [MusicBrainz](https://musicbrainz.org/doc/MusicBrainz_Database) Database to get all the available features ([python musicbrainzngs 0.6](https://python-musicbrainzngs.readthedocs.io/en/v0.6/)).  Particular features of interest include (some may not be available from a database and would require analyzing music files)
-     - BPM (tempo)
-     - dynamics (maybe this would require analyzing music files)
-     - instruments
-     - vocal qualities (male/female, harsh/operatic, etc.)
-     - genre
- 3. Split the data into a stratified train/test sets.
- 4. Try different models, together with cross-validation to predict a similarity score for other the test data.
- 5. Test it with unlabeled data, i.e., predict songs I should add to my playlist, then listen to them and see how well I feel they fit.
- 6. Test this with other peoples playlists.
+    - BPM (tempo)
+    - dynamics (maybe this would require analyzing music files)
+    - musicality, e.g., instruments, tone, etc.
+    - vocal qualities, e.g., male/female, harsh/operatic, etc.
+3. Split the data into a stratified train/test sets.
+4. Try different models, together with cross-validation to predict a similarity score for other the test data.
+5. Test it with unlabeled data, i.e., predict songs I should add to my playlist, then listen to them and see how well I feel they fit.
+6. Test this with other peoples playlists.
