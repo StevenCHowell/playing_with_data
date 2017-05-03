@@ -1,10 +1,20 @@
-source: https://stats.stackexchange.com/questions/86015/amazon-interview-question-probability-of-2nd-interview
+# Interesting Bayes' Theorem Problems
+
+I am given 99 fair coins and 1 coin that has heads on both sides. I draw a coin from the bag and flip it 10 times. What is the probability the drawn coin was the unfair coin?
+solution:[ipynb](./coin.ipynb), [nbviewer](http://nbviewer.ipython.org/github/StevenCHowell/playing_with_data/blob/master/bayes_problems/coin.ipynb)
+
+1. A couple has two children and the older child is a boy. If the probabilities of having a boy or a girl are both 1/2, what is the probability that the couple has two boys?
+2. A couple has two children, one of which is a boy. If the probabilities of having a boy or a girl are both 1/2, what is the probability that the couple has two boys?
+solution:[ipynb](./two_boys.ipynb), [nbviewer](http://nbviewer.ipython.org/github/StevenCHowell/playing_with_data/blob/master/bayes_problems/two_boys.ipynb)
+source: https://brilliant.org/wiki/bayes-theorem/
+
+
 50% of all people who receive a first interview receive a second interview
 95% of your friends that got a second interview felt they had a good first interview
 75% of your friends that DID NOT get a second interview felt they had a good first interview
 If you feel that you had a good first interview, what is the probability you will receive a second interview?
+source: https://stats.stackexchange.com/questions/86015/amazon-interview-question-probability-of-2nd-interview
 
-source: http://sites.stat.psu.edu/~lsimon/stat250/homework/chapter3/bayes.pdf
 1. A friend who works in a big city owns two cars, one small and one large. Three-quarters of
 the time he drives the small car to work, and one-quarter of the time he drives the large car.
 If he takes the small car, he usually has little trouble parking, and so is at work on time with
@@ -21,25 +31,23 @@ subsequently discovered. Of the aircraft that are discovered, 60% have an emerge
 whereas 90% of the aircraft not discovered do not have such a locator. Suppose that a light
 aircraft has disappeared. If it has an emergency locator, what is the probability that it will be
 discovered?
+source: http://sites.stat.psu.edu/~lsimon/stat250/homework/chapter3/bayes.pdf
 
 
-source: http://www.statisticshowto.com/bayes-theorem-problems/
-1.
-In a particular pain clinic, 10% of patients are prescribed narcotic pain killers. Overall, five percent of the clinic’s patients are addicted to narcotics (including pain killers and illegal substances). Out of all the people prescribed pain pills, 8% are addicts. If a patient is an addict, what is the probability that they will be prescribed pain pills?
+1. In a particular pain clinic, 10% of patients are prescribed narcotic pain killers. Overall, five percent of the clinic’s patients are addicted to narcotics (including pain killers and illegal substances). Out of all the people prescribed pain pills, 8% are addicts. If a patient is an addict, what is the probability that they will be prescribed pain pills?
 
-2.
-1% of people have a certain genetic defect.
+2. 1% of people have a certain genetic defect.
 90% of tests for the gene detect the defect (true positives).
 9.6% of the tests are false positives.
 If a person gets a positive test result, what are the odds they actually have the genetic defect?
 
-3.
-Given the following statistics, what is the probability that a woman has cancer if she has a positive mammogram result?
+3. Given the following statistics, what is the probability that a woman has cancer if she has a positive mammogram result?
 One percent of women over 50 have breast cancer.
 Ninety percent of women who have breast cancer test positive on mammograms.
 Eight percent of women will have false positives.
+source: http://www.statisticshowto.com/bayes-theorem-problems/
 
-source: http://allendowney.blogspot.com/2011/10/my-favorite-bayess-theorem-problems.htm
+
 1) The first one is a warm-up problem.  I got it from Wikipedia (but it's no longer there):
 Suppose there are two full bowls of cookies. Bowl #1 has 10 chocolate chip and 30 plain cookies, while bowl #2 has 20 of each. Our friend Fred picks a bowl at random, and then picks a cookie at random. We may assume there is no reason to believe Fred treats one bowl differently from another, likewise for the cookies. The cookie turns out to be a plain one. How probable is it that Fred picked it out of Bowl #1?
 This is a thinly disguised urn problem.  It is simple enough to solve without Bayes's Theorem, but good for practice.
@@ -71,3 +79,5 @@ Now imagine that you went to a friend’s wedding in Mexico recently, and (for t
 
 2. Imagine that, while in Mexico, you also took a side trip to Las Vegas, to pay homage to the TV show CSI. Late one night in a bar you meet a guy who claims to know that in the casino at the Tropicana there are two sorts of slot machines: one that pays out 10% of the time, and one that pays out 20% of the time [note these numbers may not be very realistic]. The two types of machines are coloured red and blue. The only problem is, the guy is so drunk he can’t quite remember which colour corresponds to which kind of machine. Unfortunately, that night the guy becomes the vic in the next CSI episode, so you are unable to ask him again when he’s sober.
 Next day you go to the Tropicana to find out more. You find a red and a blue machine side by side. You toss a coin to decide which machine to try first; based on this you then put the coin into the red machine. It doesn’t pay out. How should you update your estimate of the probability that this is the machine you’re interested in? What if it had paid out - what would be your new estimate then?
+
+source: http://allendowney.blogspot.com/2011/10/my-favorite-bayess-theorem-problems.htm
