@@ -1,5 +1,6 @@
 # Playing with Data
 This repository features a collection of Jupyter notebooks exploring data science concepts.
+
     - [best_practices.ipynb](./best_practices.ipynb) ([nbviewer](http://nbviewer.jupyter.org/github/StevenCHowell/playing_with_data/blob/master/best_practices.ipynb)) demonstrate best practices and model evaluation metrics.  Notebook topics include:
         - [pipelining](http://nbviewer.jupyter.org/github/StevenCHowell/playing_with_data/blob/master/best_practices.ipynb#Pipeline)
         - [learning curves](http://nbviewer.jupyter.org/github/StevenCHowell/playing_with_data/blob/master/best_practices.ipynb#Learning-Curves)
@@ -14,4 +15,3 @@ Subdirectories within this repo contain the following:
     - [hands_on_machine_learning/](https://github.com/StevenCHowell/playing_with_data/tree/master/hands_on_machine_learning) contains [the beginnings of] a collection of notebooks reproducing/exploring the concepts presentid in Aurélien Géron's book [Hands-On Machine Learning with Scikit-Learn and TensorFlow](http://shop.oreilly.com/product/0636920052289.do).
     - [bayes_problems/](https://github.com/StevenCHowell/playing_with_data/tree/master/bayes_problems) contains a series of sample Bayes' theorem problems and solutions.
     - [playlist_predictor/](https://github.com/StevenCHowell/playing_with_data/tree/master/playlist_predictor) contains [the skeleton of] a project to use supervised machine learning to build a playlist of songs based on the consistentency of seed songs.
-    
