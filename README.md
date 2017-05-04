@@ -2,6 +2,7 @@
 This repository features a collection of Jupyter notebooks exploring data science concepts.
 
     * [best_practices.ipynb](./best_practices.ipynb) ([nbviewer](http://nbviewer.jupyter.org/github/StevenCHowell/playing_with_data/blob/master/best_practices.ipynb)) demonstrate best practices and model evaluation metrics.  Notebook topics include:
+
         * [pipelining](http://nbviewer.jupyter.org/github/StevenCHowell/playing_with_data/blob/master/best_practices.ipynb#Pipeline)
         * [learning curves](http://nbviewer.jupyter.org/github/StevenCHowell/playing_with_data/blob/master/best_practices.ipynb#Learning-Curves)
         * [validation curves](http://nbviewer.jupyter.org/github/StevenCHowell/playing_with_data/blob/master/best_practices.ipynb#Validation-Curves)
