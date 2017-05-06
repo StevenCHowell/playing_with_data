@@ -1,0 +1,46 @@
+HADS UPDATE NOTE
+March 01, 2007
+
+This document describes the revisions to the Housing Affordability
+Data System (HADS) implemented in the files dated 022707.
+
+1. Poverty Level Income, 2001:
+Due to a data processing error, the poverty level income variable
+(IPOV) in the 2001 HADS file (only) was too low.  The error has been
+corrected.  This affects all of the income and cost relative to
+poverty variables in the 2001 file.
+
+2. Imputation for Underreported Income:
+As is described on page 10 of the HADS documentation, Households which
+report zero or negative incomes but are living in uncrowded, adequate
+housing that cost more than the Fair Market Rent are classified as
+having the area median income.  Their housing cost burdens are
+calculated on this basis.  We erronously used Cost06 rather than ZSMHC
+when making this determination and when calculating burden for these
+households.  This has been corrected.  Note that Cost06 is the same as
+ZSMHC for renters, but not for owners.  Thus, this correction changes
+the income classification and burden of some owner-occupied occupied
+households.
+
+3. Formatted Housing Cost Burden:
+The Burden variable uses the special code of -1 for households with
+zero or negative incomes.  In the previous version of HADS, the
+formatted burden variable, FMTBurden, erroneously classified such
+households as having burdens under 30% of income.  We have added an
+additional category to the formatting, so that FMTBurden reports such
+households separately.
+
+CONTACT
+David A. Vandenbroucke
+Senior Economist
+Office of Policy Development and Research
+U.S. Department of Housing and Urban Development
+451 7th Street SW, Room 8218
+Washington, DC   20410
+
+Email:    david_a._vandenbroucke@hud.gov
+Phone:    202-402-5890
+Fax:      202-708-3316
+
+
+
