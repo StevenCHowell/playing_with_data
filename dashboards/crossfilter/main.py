@@ -6,7 +6,7 @@ from bokeh.models import Select
 from bokeh.palettes import Category10_10 as PALETTE
 from bokeh.plotting import curdoc, figure
 from bokeh.sampledata.autompg import autompg_clean as DATA
-from bokeh_charts import box_plot
+from bokeh_charts import box_plot, bubble_chart
 
 DATA = DATA.copy()
 
@@ -33,10 +33,13 @@ def create_figure():
     p_kwargs = {
         'plot_width': 800,
         'plot_height': 600,
-        'tools': 'pan,box_zoom,hover,reset',
+        # 'tools': 'pan,box_zoom,reset',
     }
 
-    if x.value in cat_cols or y.value in cat_cols:
+    if x.value in cat_cols and y.value in cat_cols:
+        p = bubble_chart(DATA, x.value, y.value, **p_kwargs)
+
+    elif x.value in cat_cols or y.value in cat_cols:
         p = box_plot(DATA, x.value, y.value, **p_kwargs)
 
     else:

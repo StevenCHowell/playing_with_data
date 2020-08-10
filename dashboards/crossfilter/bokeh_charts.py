@@ -1,11 +1,15 @@
 import logging
 import math
+import numpy as np
 import pandas as pd
-from bokeh import plotting
-from bokeh.palettes import Category10_10 as PALETTE
+from bokeh import plotting, transform
+from bokeh.palettes import Category10_10, Inferno256
+from bokeh.models import ColumnDataSource, ColorBar, FixedTicker, HoverTool
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
+MAX_SIZE = 50
+PALETTE = Category10_10
 
 
 def _setup_box_info(groups, num_col, cat_col):
@@ -39,8 +43,8 @@ def _setup_box_info(groups, num_col, cat_col):
     box_info.lower = box_info[['qmin', 'lower']].max(axis=1)
 
     # box width proportional to group size
-    group_count = groups.count()
-    box_info['proportion'] = group_count / group_count.max()
+    gp_counts = groups.count()
+    box_info['proportion'] = gp_counts / gp_counts.max()
     return box_info, outliers
 
 
@@ -71,6 +75,7 @@ def box_plot(data, x_col, y_col, **kwargs):
     if orient_v:
         p = plotting.figure(x_axis_label=x_col, y_axis_label=y_col,
                             x_range=cats, **kwargs)
+
         p.xaxis.major_label_orientation = math.pi / 4
         p.xgrid.grid_line_color = None
         p.ygrid.grid_line_color = "lightgray"
@@ -88,7 +93,7 @@ def box_plot(data, x_col, y_col, **kwargs):
 
     else:
         p = plotting.figure(x_axis_label=x_col, y_axis_label=y_col,
-                            y_range=cats, **kwarg)
+                            y_range=cats, **kwargs)
         p.xgrid.grid_line_color = "lightgray"
         p.ygrid.grid_line_color = None
         segments = [[box_info.lower, cats, box_info.q1, cats],
@@ -109,4 +114,53 @@ def box_plot(data, x_col, y_col, **kwargs):
             p.circle(outliers[cat_col], outliers[num_col], size=3,
             color=outliers.color, fill_alpha=0.6)
 
+    return p
+
+
+def bubble_chart(data, x_col, y_col, **kwargs):
+    columns = sorted(data.columns)
+    cat_cols = [c for c in columns if data[c].dtype == object]
+    if x_col not in cat_cols or y_col not in cat_cols:
+        LOGGER.error(f'{x_col} and {y_col} are not both categorical.')
+        return plotting.figure()
+
+    data_tmp = data[[x_col, y_col]].copy()
+    data_tmp['counts'] = 1
+    if x_col == y_col:
+        size_fac = 1.5
+        col1 = x_col + '_1'
+        col2 = x_col + '_2'
+        data_tmp.columns = [col1, col2, 'counts']
+    else:
+        size_fac = 1
+        col1 = x_col
+        col2 = y_col
+    gp_counts = data_tmp.groupby([col1, col2]).count().reset_index()
+
+    x_cats = np.sort(gp_counts[col1].unique())
+    y_cats = np.sort(gp_counts[col2].unique())
+    mx_gps = max(len(x_cats), len(y_cats))
+    mx_size = kwargs.get('plt_height', 600) * size_fac / mx_gps
+    gp_counts['size'] = gp_counts.counts / gp_counts.counts.max() * mx_size
+
+    ticks = np.linspace(gp_counts.counts.min(), gp_counts.counts.max(), 5)
+    color_ticks = FixedTicker(ticks=ticks.round(0))
+    color_transformer = transform.linear_cmap('counts', Inferno256,
+                                              gp_counts.counts.min(),
+                                              gp_counts.counts.max())
+    color_bar = ColorBar(color_mapper=color_transformer['transform'],
+                         location=(0, 0), ticker=color_ticks)
+
+    source = ColumnDataSource(data=gp_counts)
+    p = plotting.figure(x_range=x_cats, y_range=y_cats,
+                        x_axis_label=x_col, y_axis_label=y_col,
+                        **kwargs)
+    p.xaxis.major_label_orientation = math.pi / 4
+    p.add_layout(color_bar, 'right')
+    p.scatter(x=col1, y=col2, size='size',
+              color=color_transformer, source=source)
+    p.add_tools(HoverTool(tooltips = [
+        (x_col, '@'+col1),
+        ('Count', '@counts'),
+    ]))
     return p
