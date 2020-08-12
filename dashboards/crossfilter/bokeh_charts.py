@@ -38,17 +38,37 @@ def _setup_box_info(groups, num_col, cat_col):
     outliers = groups.apply(_check_outlier)
     outliers['color'] = box_info.color[outliers[cat_col]].values
 
-    # if no outliers, shrink lengths of stems to be no longer than the minimums or maximums
+    # if no outliers, shrink lengths of stems to be no longer than the min/max
     box_info.upper = box_info[['qmax', 'upper']].min(axis=1)
     box_info.lower = box_info[['qmin', 'lower']].max(axis=1)
 
     # box width proportional to group size
     gp_counts = groups.count()
-    box_info['proportion'] = gp_counts / gp_counts.max()
+    box_info['proportion'] = gp_counts / gp_counts.max() * 0.95
     return box_info, outliers
 
 
 def box_plot(data, x_col, y_col, **kwargs):
+    '''
+    Create a box plot.
+
+    Parameters
+    ----------
+    data: pd.DataFrame
+        DataFrame containing at least the two columns to show
+        on the x and y axes.
+    x_col: str
+        Column label for the data feature that should be shown on the x-axis.
+    y_col: str
+        Column label for the data feature that should be shown on the y-axis.
+    kwargs: dict
+        Keyword arguments to be passed to `bokeh.plotting.figure()`
+
+    Returns
+    -------
+    out_df: boke.plotting.figure
+        Figure handle for the box plot.
+    '''
     columns = sorted(data.columns)
     cat_cols = [c for c in columns if data[c].dtype == object]
     x_cat = x_col in cat_cols
@@ -112,7 +132,7 @@ def box_plot(data, x_col, y_col, **kwargs):
         p.segment(*segments[i], line_width=1, line_color="black")
         if not outliers.empty:
             p.circle(outliers[cat_col], outliers[num_col], size=3,
-            color=outliers.color, fill_alpha=0.6)
+                     color=outliers.color, fill_alpha=0.6)
 
     return p
 
@@ -159,7 +179,7 @@ def bubble_chart(data, x_col, y_col, **kwargs):
     p.add_layout(color_bar, 'right')
     p.scatter(x=col1, y=col2, size='size',
               color=color_transformer, source=source)
-    p.add_tools(HoverTool(tooltips = [
+    p.add_tools(HoverTool(tooltips=[
         (x_col, '@'+col1),
         ('Count', '@counts'),
     ]))
