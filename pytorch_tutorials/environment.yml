@@ -1,0 +1,15 @@
+name: py38torch
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - ipython
+  - ipykernel
+  - matplotlib
+  - seaborn
+  - scipy
+  - scikit-learn
+  - pytorch::pytorch
+  - pytorch::torchvision
+  - pytorch::torchaudio
+  - pytorch::cudatoolkit=11.1

@@ -1,0 +1,15 @@
+name: tf2-gpu
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - mamba
+  - tensorflow-gpu=2.*
+  - keras
+  - scikit-learn
+  - seaborn
+  - pandas
+  - bokeh
+  - ipykernel
+  - ipython
+  - scipy
